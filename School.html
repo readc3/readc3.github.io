@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "UTF-8">
+        <title>School</title>
+    </head>
+
+    <body>
+        <div id = "School">
+            <h2 style = "text-align: center;"> My favorite coding project: </h2>
+            <pre>
+                
+                    import random as rand
+                    import turtle as turt
+                    colors = ["red", "firebrick", "gold", "chartreuse", "darkgreen", "deepskyblue", "orange", "lightsalmon", "aquamarine", "lavender", "blue", "violet", "magenta", "blueviolet"]
+                    percent = [0.55, 0.6, 0.65, 0.65, 0.7, 0.7, 0.7, 0.75, 0.75, 0.85, 0.9, 0.95, 1]
+                    shelflocs = [] #list of bottom y coordinate of each shelf to orientate the books
+
+                    goodstatement = False
+                    while goodstatement == False:
+                        numofshel = input("How many shelves do you want? (Suggestion: pick a number between 4 and 10.) ")
+                        x = int(numofshel) #variable number for easier calculations
+                        goodstatement = True
+                        if x <= 0:
+                            print("Please pick a positive integer. ")
+                    sps = (570 - 15 * (x-1)) / x   #space per shelve
+                    turt.ht()
+                    turt.penup()
+                    turt.speed(0)
+
+                    #draw main rect
+                    turt.goto(-200, -300)
+                    turt.fillcolor("sienna")
+                    turt.begin_fill()
+                    turt.pendown()
+                    turt.goto(-200, 300)
+                    turt.goto(200, 300)
+                    turt.goto(200, -300)
+                    turt.goto(-200, -300)
+                    turt.end_fill()
+
+                    #draw white rects for shelf
+                    for i in range(x):
+                        botshelfconst = (sps * (i)) + 15 * (i)
+                        shelflocs.append(-285 + botshelfconst)
+                        topshelfconst = (sps * (i + 1)) + 15 * (i)
+                        turt.penup()
+                        turt.goto(-185, -285 + botshelfconst)
+                        turt.fillcolor("white")
+                        turt.begin_fill()
+                        turt.pendown()
+                        turt.goto(-185, -285 + topshelfconst)
+                        turt.goto(185, -285 + topshelfconst)
+                        turt.goto(185, -285 + botshelfconst)
+                        turt.goto(-185, -285 + botshelfconst)
+                        turt.end_fill()
+
+                    #draw books
+                    for i in shelflocs:
+                        for j in range(20):
+                            turt.penup()
+                            turt.goto(-185 + (j * 18.5), i)
+                            turt.fillcolor(rand.choice(colors))
+                            turt.begin_fill()
+                            turt.pendown()
+                            height = rand.uniform(0.55, 1)
+                            turt.goto(-185 + (j * 18.5), i + sps * height)
+                            turt.goto(-185 + ((j+1) * 18.5), i + sps * height)
+                            turt.goto(-185 + ((j+1) * 18.5), i)
+                            turt.goto(-185 + (j * 18.5), i)
+                            turt.end_fill()
+
+
+
+                    turt.mainloop()
+                
+            </pre>
+        </div>
+    </body>
+</html>
